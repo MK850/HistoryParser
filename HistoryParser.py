@@ -127,7 +127,7 @@ def Web_list(urls):
     visit_CoUnt=visit_Count_list
 
     web_sig_url = []
-    file = []
+
     for i in range(len(urls)):
         if 'http' in urls[i]:  # url 시작이 http, https
             slash = urls[i].split('/')
@@ -136,21 +136,13 @@ def Web_list(urls):
                 del (slash[blank])
                 web_sig_url.append(slash[1])
 
-        else:
-            file.append('files ' * visit_CoUnt[i])
-
     Website = []
     for i in range(len(web_sig_url)):
-        if web_sig_url[i].count('-'):
-            hyphen = web_sig_url[i].split('-')
-            hyphen_space = " " + hyphen[3]
-            Website.append(hyphen_space*visit_CoUnt[i])
-        else:
             dot = web_sig_url[i].split('.')
             dot_space = " " + dot[1]
             Website.append(dot_space*visit_CoUnt[i])
 
-    url_data = file + Website
+    url_data = Website
     count = "".join(url_data).split()
 
     Counter = collections.Counter(count)
