@@ -2,7 +2,6 @@ import HistoryParser
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def main():
     visit_count=HistoryParser.web_value
     max_visit=max(visit_count)
@@ -33,6 +32,7 @@ def main():
     # y축 세부설정
     ax.set_yticks(range(len(yticks)))
     ax.set_yticklabels(yticks, fontsize=8)
+    ax.set_ylabel('Web Site', fontsize=14)
 
     # 범례
     box = ax.get_position()  # 범례를 그래프상자 밖에 그리기위해 상자크기를 조절
@@ -64,3 +64,4 @@ def present_width(ax, bar):
 
 if __name__ == '__main__':
     main()
+

@@ -157,35 +157,12 @@ for i in re.finditer(URL_Sign,Find_from):
 Start_sign.sort()
 
 #URL 끝 찾기
-Default_end="100002"
-
-Case1_sign="00de"+Default_end
-Case1_List=[]
-for i in re.finditer(Case1_sign,Find_from):
-    Case1_List.append(i.start())
-
-Case2_sign="00beadde"+Default_end
-Case2_List=[]
-for i in re.finditer(Case2_sign,Find_from):
-    Case2_List.append(i.start())
-
-Case3_sign="00adde"+Default_end
-Case3_List=[]
-for i in re.finditer(Case3_sign,Find_from):
-    Case3_List.append(i.start())
-
-Case4_sign="00"+Default_end
-Case4_List=[]
-for i in re.finditer(Case4_sign,Find_from):
-    Case4_List.append(i.start())
-
-Case_total=Case1_List+Case2_List+Case3_List+Case4_List
-Case_total.sort()
-
-#인덱스 값 정리
-for i in range(len(Start_sign)-1):
-    if Start_sign[i]>Case_total[i]:
-        del Case_total[i]
+Default_end="00"
+End_list=[]
+for i in range(len(Start_sign)):
+    End_urls=Find_from.find(Default_end,Start_sign[i]+2*byte_8+176)
+    End_list.append(End_urls)
+End_list.sort()
 
 visit_Count_list=[]
 URL_List=[]
@@ -195,7 +172,7 @@ Last_visitTime_List=[]
 
 for i in range(len(Start_sign)):
     URL_sign=Start_sign[i] #URL 시그니쳐 검색
-    END_URL=Case_total[i]
+    END_URL=End_list[i]
     size_str=hex[URL_sign+byte_4:URL_sign+2*byte_4]
     last_fix=hex[URL_sign+2*byte_4:URL_sign+2*byte_8]
     last_visited=hex[URL_sign+2*byte_8:URL_sign+3*byte_8]
