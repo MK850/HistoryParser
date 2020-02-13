@@ -114,7 +114,7 @@ URL_List=[]
 Record_Size_List=[]
 Last_fixTime_List=[]
 Last_visitTime_List=[]
-IE_Hisory=[]
+IEHisory=[]
 
 for i in range(len(Start_sign)):
     URL_sign=Start_sign[i] #URL 시그니쳐 검색
@@ -132,13 +132,11 @@ for i in range(len(Start_sign)):
     Last_visitTime_List.append(Time_List(last_visited))
 
     if __name__ == "__main__":
-        IE_Hisory.append(URL_List[i])
-        IE_Hisory.append(Record_Size_List[i])
-        IE_Hisory.append(visit_Count_list[i])
-        IE_Hisory.append(Last_fixTime_List[i])
-        IE_Hisory.append(Last_visitTime_List[i])
-
-        print(IE_Hisory)
+        IEHisory.append(URL_List[i])
+        IEHisory.append(Record_Size_List[i])
+        IEHisory.append(visit_Count_list[i])
+        IEHisory.append(Last_fixTime_List[i])
+        IEHisory.append(Last_visitTime_List[i])
 
 Counter=(Web_list(URL_List))
 web_key = list(Counter.keys())
