@@ -1,15 +1,18 @@
-import HistoryParser
+from Chrome_History import chromeHistory
 import collections
 import matplotlib.pyplot as plt
 import numpy as np
 
-visitCount=HistoryParser. visit_Count_list
-url=HistoryParser.URL_List
+url=[]
+visit_count=[]
+for i in range(len(chromeHistory)):
+    url.append(chromeHistory[i][0])
+    visit_count.append(int(chromeHistory[i][2]))
 
 #웹 사이트 리스트 함수
 def Web_list(urls):
 
-    visit_CoUnt=visitCount
+    visit_CoUnt=visit_count
     web_sig_url = []
 
     for i in range(len(urls)):
@@ -95,7 +98,7 @@ def main():
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
-    plt.title('Internet Explorer 9')
+    plt.title('Chrome')
     plt.show()
 
 def compute_pos(yticks, height, i, models):

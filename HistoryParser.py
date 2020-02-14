@@ -1,4 +1,3 @@
-import collections
 import getpass
 import binascii
 import re
@@ -67,32 +66,6 @@ def Visit_list(visit_count):
     list_visit_count= int(Time_big, 16)
     return (list_visit_count)
 
-#웹 사이트 리스트 함수
-def Web_list(urls):
-
-    visit_CoUnt=visit_Count_list
-    web_sig_url = []
-
-    for i in range(len(urls)):
-        if 'http' in urls[i]:  # url 시작이 http, https
-            slash = urls[i].split('/')
-            if '' in slash:
-                blank = slash.index('')
-                del (slash[blank])
-                web_sig_url.append(slash[1])
-
-    Website = []
-    for i in range(len(web_sig_url)):
-            dot = web_sig_url[i].split('.')
-            dot_space = " " + dot[1]
-            Website.append(dot_space*visit_CoUnt[i])
-
-    url_data = Website
-    count = "".join(url_data).split()
-
-    Counter = collections.Counter(count)
-    return(Counter)
-
 #URL 시그니처 찾기
 Find_from=hex #헥스 값을 대입
 URL_Sign="55524c20"
@@ -125,7 +98,7 @@ for i in range(len(Start_sign)):
     visit_count=hex[URL_sign+168:URL_sign +168+byte_4]
     url_trimed = hex[URL_sign + 2 * byte_8 + 208:END_URL]
 
-    visit_Count_list.append(Visit_list(visit_count))
+    visit_Count_list.append(int(Visit_list(visit_count)))
     URL_List.append(URL_LIST(url_trimed))
     Record_Size_List.append(Record_Size_list(size_str))
     Last_fixTime_List.append(Time_List(last_fix))
@@ -137,7 +110,3 @@ for i in range(len(Start_sign)):
         IEHisory.append(visit_Count_list[i])
         IEHisory.append(Last_fixTime_List[i])
         IEHisory.append(Last_visitTime_List[i])
-
-Counter=(Web_list(URL_List))
-web_key = list(Counter.keys())
-web_value = list(Counter.values())
