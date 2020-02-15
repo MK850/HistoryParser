@@ -6,53 +6,51 @@ import numpy as np
 visitCount=HistoryParser. visit_Count_list
 url=HistoryParser.URL_List
 
-#웹 사이트 리스트 함수
-def Web_list(urls):
+def main():
 
-    visit_CoUnt=visitCount
-    web_sig_url = []
+    # 웹 사이트 리스트 함수
+    def Web_list(urls):
 
-    for i in range(len(urls)):
-        if 'http' in urls[i]:  # url 시작이 http, https
-            slash = urls[i].split('/')
-            if '' in slash:
-                blank = slash.index('')
-                del (slash[blank])
-                web_sig_url.append(slash[1])
+        visit_CoUnt = visitCount
+        web_sig_url = []
 
-    Website = []
-    for i in range(len(web_sig_url)):
+        for i in range(len(urls)):
+            if 'http' in urls[i]:  # url 시작이 http, https
+                slash = urls[i].split('/')
+                if '' in slash:
+                    blank = slash.index('')
+                    del (slash[blank])
+                    web_sig_url.append(slash[1])
 
+        Website = []
+        for i in range(len(web_sig_url)):
 
             dot = web_sig_url[i].split('.')
-            if dot[0]!='www'and len(dot)<=2:
+            if dot[0] != 'www' and len(dot) <= 2:
                 dot_space = " " + dot[0]
-                Website.append(dot_space*visit_CoUnt[i])
+                Website.append(dot_space * visit_CoUnt[i])
 
-            elif dot[0]=='m':
+            elif dot[0] == 'm':
                 dot_space = " " + dot[2]
                 Website.append(dot_space * visit_CoUnt[i])
 
 
-            elif dot[1] == 'helpstart' or dot[1]=='msafflnk':
+            elif dot[1] == 'helpstart' or dot[1] == 'msafflnk':
                 dot_space = " " + dot[0]
                 Website.append(dot_space * visit_CoUnt[i])
 
-            elif dot[1]=='cafe':
-                    dot_space = " " + dot[2]
-                    Website.append(dot_space * visit_CoUnt[i])
+            elif dot[1] == 'cafe':
+                dot_space = " " + dot[2]
+                Website.append(dot_space * visit_CoUnt[i])
 
             else:
                 dot_space = " " + dot[1]
                 Website.append(dot_space * visit_CoUnt[i])
-    url_data = Website
-    count = "".join(url_data).split()
+        url_data = Website
+        count = "".join(url_data).split()
 
-    Counter = collections.Counter(count)
-    return(Counter)
-
-def main():
-
+        Counter = collections.Counter(count)
+        return (Counter)
     sort = sorted(Web_list(url).items(), key=lambda x: (x[1], x[0]))
     Counter=dict(sort)
 
@@ -110,6 +108,3 @@ def present_width(ax, bar):
         posx = witdh * 1.01
         posy = rect.get_y() + rect.get_height() * 0.5
         ax.text(posx, posy, '%d' % witdh, rotation=0, ha='left', va='center')
-
-if __name__ == '__main__':
-    main()
