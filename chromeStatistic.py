@@ -105,7 +105,7 @@ def main():
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
-    plt.title('Chrome TOP 15') #제목
+    plt.title('Internet Explorer 9 TOP'+str(len(upY)))
     plt.show()
 
 def compute_pos(yticks, height, i, models):
