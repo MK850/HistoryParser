@@ -54,14 +54,22 @@ def main():
     upY=[]
     upvisit_count=[]
 
-    #상위 개수 출력
-    for i in range(15):
-        upY.append(y[i])
-        upvisit_count.append(visit_count[i])
-    upY.reverse()
-    upvisit_count.reverse()
+    # 상위 개수 출력
+    if len(visit_count) > 15:
+        for i in range(0, 15):
+            upY.append(y[i])
+            upvisit_count.append(visit_count[i])
+        max_visit = max(upvisit_count)
+        upY.reverse()
+        upvisit_count.reverse()
 
-    max_visit=max(upvisit_count)
+    else:
+        for i in range(0, len(visit_count)):
+            upY.append(y[i])
+            upvisit_count.append(visit_count[i])
+        max_visit = max(upvisit_count)
+        upY.reverse()
+        upvisit_count.reverse()
 
     #  bar plot으로 나타낼 데이터 입력
     models = ['Visit Count']

@@ -53,13 +53,27 @@ def main():
 
     y = list(Counter.keys())
     visit_count= list(Counter.values())
-    max_visit=max(visit_count)
+    upY = []
+    upvisit_count = []
+
+    # 상위 개수 출력
+    if len(visit_count)>15:
+        for i in range(0,15):
+            upY.append(y[i])
+            upvisit_count.append(visit_count[i])
+        max_visit = max(upvisit_count)
+
+    else:
+            for i in range(0,len(visit_count)):
+                upY.append(y[i])
+                upvisit_count.append(visit_count[i])
+
+            max_visit = max(upvisit_count)
 
     #  bar plot으로 나타낼 데이터 입력
     models = ['Visit Count']
-    yticks = y
-    data = {'Visit Count':visit_count }
-
+    yticks = upY
+    data = {'Visit Count': upvisit_count}
     #  matplotlib의 figure 및 axis 설정
     fig, ax = plt.subplots(1, 1, figsize=(10, 5))  # 1x1 figure matrix 생성, 가로(7인치)x세로(5인치) 크기지정
     colors = ['salmon']
@@ -90,7 +104,7 @@ def main():
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
-    plt.title('Internet Explorer 9')
+    plt.title('Internet Explorer 9 TOP 15')
     plt.show()
 
 def compute_pos(yticks, height, i, models):
