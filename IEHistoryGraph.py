@@ -1,13 +1,16 @@
-import HistoryParser
+from HistoryParser import IEHistory
 import collections
 import matplotlib.pyplot as plt
 import numpy as np
 
-visitCount=HistoryParser. visit_Count_list
-url=HistoryParser.URL_List
+url=[]
+visitCount=[]
+for x in range(0,len(IEHistory),4):
+    url.append(IEHistory[x])
+for x in range(1,len(IEHistory),4):
+    visitCount.append(int(IEHistory[x]))
 
 def main():
-
     # 웹 사이트 리스트 함수
     def Web_list(urls):
 
@@ -24,25 +27,19 @@ def main():
 
         Website = []
         for i in range(len(web_sig_url)):
-
             dot = web_sig_url[i].split('.')
             if dot[0] != 'www' and len(dot) <= 2:
                 dot_space = " " + dot[0]
                 Website.append(dot_space * visit_CoUnt[i])
-
             elif dot[0] == 'm':
                 dot_space = " " + dot[2]
                 Website.append(dot_space * visit_CoUnt[i])
-
-
             elif dot[1] == 'helpstart' or dot[1] == 'msafflnk':
                 dot_space = " " + dot[0]
                 Website.append(dot_space * visit_CoUnt[i])
-
             elif dot[1] == 'cafe':
                 dot_space = " " + dot[2]
                 Website.append(dot_space * visit_CoUnt[i])
-
             else:
                 dot_space = " " + dot[1]
                 Website.append(dot_space * visit_CoUnt[i])
