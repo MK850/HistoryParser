@@ -1,4 +1,4 @@
-from Chrome_History import chromeHistory
+from chromeHistory import chromeHistory
 import collections
 import matplotlib.pyplot as plt
 import numpy as np
@@ -8,6 +8,9 @@ visitCount=[]
 for i in range(len(chromeHistory)):
     url.append(chromeHistory[i][0])
     visitCount.append(int(chromeHistory[i][2]))
+
+def handle_close(evt):
+    plt.close()
 
 def main():
     # 웹 사이트 리스트 함수
@@ -76,7 +79,7 @@ def main():
     yticks = upY
     data = {'Visit Count':upvisit_count }
 
-    #  matplotlib의 figure 및 axis 설정
+
     fig, ax = plt.subplots(1, 1, figsize=(10, 5))  # 1x1 figure matrix 생성, 가로(7인치)x세로(5인치) 크기지정
     colors = ['salmon']
     height = 0.2
@@ -107,6 +110,7 @@ def main():
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
     plt.title('Chrome TOP 15') #제목
+    fig.canvas.mpl_connect('close_event', handle_close)
     plt.show()
 
 def compute_pos(yticks, height, i, models):
@@ -121,6 +125,3 @@ def present_width(ax, bar):
         posx = witdh * 1.01
         posy = rect.get_y() + rect.get_height() * 0.5
         ax.text(posx, posy, '%d' % witdh, rotation=0, ha='left', va='center')
-
-main()
-plt.close()
