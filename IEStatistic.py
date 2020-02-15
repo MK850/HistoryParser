@@ -5,10 +5,9 @@ import numpy as np
 
 url=[]
 visitCount=[]
-for x in range(0,len(IEHistory),4):
-    url.append(IEHistory[x])
-for x in range(1,len(IEHistory),4):
-    visitCount.append(int(IEHistory[x]))
+for i in range(len(IEHistory)):
+    url.append(IEHistory[i][0])
+    visitCount.append(int(IEHistory[i][1]))
 
 def main():
     # 웹 사이트 리스트 함수
@@ -104,7 +103,7 @@ def main():
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
-    plt.title('Internet Explorer 9 TOP 15')
+    plt.title('Internet Explorer 9 TOP'+str(len(upY)))
     plt.show()
 
 def compute_pos(yticks, height, i, models):
@@ -119,3 +118,6 @@ def present_width(ax, bar):
         posx = witdh * 1.01
         posy = rect.get_y() + rect.get_height() * 0.5
         ax.text(posx, posy, '%d' % witdh, rotation=0, ha='left', va='center')
+
+main()
+

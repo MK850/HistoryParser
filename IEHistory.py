@@ -81,7 +81,7 @@ def main():
     URL_List = []
     Last_fixTime_List = []
     Last_visitTime_List = []
-    Hisory = []
+    History = []
 
     for i in range(len(Start_sign)):
         URL_sign = Start_sign[i]  # URL 시그니쳐 검색
@@ -96,11 +96,8 @@ def main():
         Last_fixTime_List.append(Time_List(last_fix))
         Last_visitTime_List.append(Time_List(last_visited))
 
-        Hisory.append(URL_List[i])
-        Hisory.append(visit_Count_list[i])
-        Hisory.append(Last_fixTime_List[i])
-        Hisory.append(Last_visitTime_List[i])
-
-    return Hisory
+    for i in range(len(Start_sign)):
+        History.append([URL_List[i], visit_Count_list[i], Last_fixTime_List[i], Last_visitTime_List[i]])
+    return History
 
 IEHistory = main()
