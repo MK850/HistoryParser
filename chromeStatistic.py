@@ -9,9 +9,6 @@ for i in range(len(chromeHistory)):
     url.append(chromeHistory[i][0])
     visitCount.append(int(chromeHistory[i][2]))
 
-def handle_close(evt):
-    plt.close()
-
 def main():
     # 웹 사이트 리스트 함수
     def Web_list(urls):
@@ -79,7 +76,6 @@ def main():
     yticks = upY
     data = {'Visit Count':upvisit_count }
 
-
     fig, ax = plt.subplots(1, 1, figsize=(10, 5))  # 1x1 figure matrix 생성, 가로(7인치)x세로(5인치) 크기지정
     colors = ['salmon']
     height = 0.2
@@ -110,7 +106,6 @@ def main():
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
     plt.title('Chrome TOP 15') #제목
-    fig.canvas.mpl_connect('close_event', handle_close)
     plt.show()
 
 def compute_pos(yticks, height, i, models):
