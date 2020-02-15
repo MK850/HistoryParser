@@ -121,3 +121,6 @@ def present_width(ax, bar):
         posx = witdh * 1.01
         posy = rect.get_y() + rect.get_height() * 0.5
         ax.text(posx, posy, '%d' % witdh, rotation=0, ha='left', va='center')
+
+main()
+plt.close()
