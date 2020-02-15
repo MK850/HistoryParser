@@ -26,44 +26,47 @@ def main():
 
         Website = []
         for i in range(len(web_sig_url)):
-
             dot = web_sig_url[i].split('.')
             if dot[0] != 'www' and len(dot) <= 2:
                 dot_space = " " + dot[0]
                 Website.append(dot_space * visit_CoUnt[i])
-
             elif dot[0] == 'm':
                 dot_space = " " + dot[2]
                 Website.append(dot_space * visit_CoUnt[i])
-
-
             elif dot[1] == 'helpstart' or dot[1] == 'msafflnk':
                 dot_space = " " + dot[0]
                 Website.append(dot_space * visit_CoUnt[i])
-
             elif dot[1] == 'cafe':
                 dot_space = " " + dot[2]
                 Website.append(dot_space * visit_CoUnt[i])
-
             else:
                 dot_space = " " + dot[1]
                 Website.append(dot_space * visit_CoUnt[i])
         url_data = Website
         count = "".join(url_data).split()
-
         Counter = collections.Counter(count)
         return (Counter)
-    sort = sorted(Web_list(url).items(), key=lambda x: (x[1], x[0]))
+    sort = sorted(Web_list(url).items(), key=lambda x: (-x[1], x[0]))
     Counter=dict(sort)
 
     y = list(Counter.keys())
     visit_count= list(Counter.values())
-    max_visit=max(visit_count)
+    upY=[]
+    upvisit_count=[]
+
+    #상위 개수 출력
+    for i in range(15):
+        upY.append(y[i])
+        upvisit_count.append(visit_count[i])
+    upY.reverse()
+    upvisit_count.reverse()
+
+    max_visit=max(upvisit_count)
 
     #  bar plot으로 나타낼 데이터 입력
     models = ['Visit Count']
-    yticks = y
-    data = {'Visit Count':visit_count }
+    yticks = upY
+    data = {'Visit Count':upvisit_count }
 
     #  matplotlib의 figure 및 axis 설정
     fig, ax = plt.subplots(1, 1, figsize=(10, 5))  # 1x1 figure matrix 생성, 가로(7인치)x세로(5인치) 크기지정
@@ -95,7 +98,7 @@ def main():
     ax.set_axisbelow(True)
     ax.xaxis.grid(True, color='gray', linestyle='dashed', linewidth=0.5)
 
-    plt.title('Chrome')
+    plt.title('Chrome TOP 15') #제목
     plt.show()
 
 def compute_pos(yticks, height, i, models):
