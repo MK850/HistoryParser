@@ -91,7 +91,7 @@ def main():
         visit_count = hex[URL_sign + 168:URL_sign + 168 + byte_4]
         url_trimed = hex[URL_sign + 2 * byte_8 + 208:END_URL]
 
-        visit_Count_list.append(int(Visit_list(visit_count)))
+        visit_Count_list.append(Visit_list(visit_count))
         URL_List.append(URL_LIST(url_trimed))
         Last_fixTime_List.append(Time_List(last_fix))
         Last_visitTime_List.append(Time_List(last_visited))
